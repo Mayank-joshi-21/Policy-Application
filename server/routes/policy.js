@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Sample route for testing
 router.get('/sample', (req, res) => {
   res.json({
     name: 'Rahul',
@@ -16,7 +15,6 @@ router.get('/sample', (req, res) => {
   });
 });
 
-// 🎯 POST route to generate benefit illustration
 router.post('/illustration', (req, res) => {
   const { dob, sumAssured, modalPremium, pt, ppt } = req.body;
 
@@ -37,13 +35,12 @@ router.post('/illustration', (req, res) => {
     const age = ageNow + i;
     const premium = i <= ppt ? Number(modalPremium) : 0;
 
-    // Bonus rate logic
     let bonusRate = 0;
     if (i <= ppt) bonusRate = 2.5 + i * 0.25;
     else if (i === pt - 1) bonusRate = 4;
     else if (i === pt) bonusRate = 25;
 
-    bonusRate = Math.min(bonusRate, 25); // Cap it to 25%
+    bonusRate = Math.min(bonusRate, 25); 
 
     const bonusAmount = Math.round((bonusRate / 100) * modalPremium);
     const finalSumAssured = i === ppt ? Number(sumAssured) : 0;

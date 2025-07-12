@@ -45,7 +45,6 @@ function App() {
     const ptVal = Number(pt);
     const pptVal = Number(ppt);
 
-    // Frontend validations
     if (ageNow < 23 || ageNow > 56) return setError("Age must be between 23 and 56");
     if (pptVal < 5 || pptVal > 10) return setError("PPT must be between 5 and 10");
     if (ptVal < 10 || ptVal > 20) return setError("PT must be between 10 and 20");
@@ -55,7 +54,7 @@ function App() {
     if (sum < Math.max(premium * 10, 5000000))
       return setError("Sum Assured must be at least 10x Modal Premium or ₹50,00,000");
 
-    setSuccess("✅ Validations passed... generating table");
+    setSuccess("Validations passed... generating table");
 
     try {
       const res = await fetch('http://localhost:3000/api/policy/illustration', {
@@ -76,7 +75,7 @@ function App() {
 
       if (res.ok) {
         setTableData(data.illustration);
-        setSuccess("✅ Table generated successfully");
+        setSuccess("Table generated successfully");
       } else {
         setError(data.message || "Error occurred");
       }
